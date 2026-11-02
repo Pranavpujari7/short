@@ -3,7 +3,7 @@
 
   // ---------- your shortcuts (edit freely) ----------
   // The WHOLE message must equal the shortcut (case-insensitive) for it to be replaced.
-  // "m" can be used instead of "." (e.g. ms = .s)
+  // "m" can be used instead of "." (e.g. ms = .s, wm = w.)
   const SHORTCUTS = {
     ".s": "shoot",
     ".y": "dynamite",
@@ -36,6 +36,7 @@
         if (!msg || typeof msg.content !== "string") return;
         let key = msg.content.trim().toLowerCase();
         if (/^m[a-z]$/.test(key)) key = "." + key[1];
+        else if (/^[wsad]m$/.test(key)) key = key[0] + ".";
         if (Object.prototype.hasOwnProperty.call(SHORTCUTS, key)) {
           msg.content = SHORTCUTS[key];
         }
