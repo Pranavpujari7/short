@@ -38,3 +38,13 @@
         if (/^m[a-z]$/.test(key)) key = "." + key[1];
         if (Object.prototype.hasOwnProperty.call(SHORTCUTS, key)) {
           msg.content = SHORTCUTS[key];
+        }
+      } catch (e) {}
+    }));
+  }
+
+  exports.onUnload = function () {
+    unpatches.forEach(function (u) { try { u(); } catch (e) {} });
+  };
+  return exports;
+})({});
